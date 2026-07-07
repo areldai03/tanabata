@@ -257,8 +257,10 @@
       camera.fov = mobile ? (veryNarrow ? 54 : 50) : 42;
       camera.position.z = mobile ? (veryNarrow ? 21.5 : 20) : 18;
       camera.updateProjectionMatrix();
-      bambooGroup.position.set(mobile ? 2.55 : 1.4, mobile ? -.45 : .2, mobile ? .8 : 1.2);
-      bambooGroup.scale.setScalar(mobile ? (veryNarrow ? .86 : .92) : 1);
+      // On narrow screens the bamboo stems are modeled around x=6, so the group
+      // must be shifted left. Otherwise the tags sit outside the camera frustum.
+      bambooGroup.position.set(mobile ? (veryNarrow ? -3.95 : -3.55) : 1.4, mobile ? -.62 : .2, mobile ? .45 : 1.2);
+      bambooGroup.scale.setScalar(mobile ? (veryNarrow ? .80 : .86) : 1);
       galaxy.position.y = mobile ? -1.0 : 0;
       moon.position.set(mobile ? -4.2 : -6.6, mobile ? 6.2 : 5.4, -10);
       moonGlow.position.copy(moon.position);
